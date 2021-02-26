@@ -1,7 +1,7 @@
-import React, {PureComponent} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import {RNCamera} from 'react-native-camera';
-import {MaskedViewComponent} from './maskedView'
+import React, { PureComponent } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { RNCamera } from 'react-native-camera';
+import { MaskedViewComponent } from './maskedView';
 
 const PendingView = () => (
   <View
@@ -20,7 +20,7 @@ export class Camera extends PureComponent {
     super(props);
 
     this.state = {
-      mask: false
+      mask: false,
     }
   }
 
@@ -40,7 +40,7 @@ export class Camera extends PureComponent {
             message: 'We need your permission to use your camera',
             buttonPositive: 'Ok',
             buttonNegative: 'Cancel',
-            
+
           }}
           useNativeZoom={true}
           androidRecordAudioPermissionOptions={{
@@ -52,15 +52,13 @@ export class Camera extends PureComponent {
           onGoogleVisionBarcodesDetected={({ barcodes }) => {
             console.log(barcodes);
           }}
-          
         >
-
           {({ camera, status, recordAudioPermissionStatus }) => {
             if (status !== 'READY') return <PendingView />;
             return (
-              <View style={{justifyContent: 'flex-end', alignItems: 'center', flex: 1}}>
-                 {this.state.mask && <MaskedViewComponent />}
-                <View style={{flexDirection: 'row'}}>
+              <View style={{ justifyContent: 'flex-end', alignItems: 'center', flex: 1 }}>
+                {this.state.mask && <MaskedViewComponent />}
+                <View style={{ flexDirection: 'row' }}>
                   <View style={{ justifyContent: 'center' }}>
                     <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
                       <Text style={{ fontSize: 14 }}> SNAP </Text>
@@ -94,7 +92,7 @@ export class Camera extends PureComponent {
       mask: !this.state.mask
     })
   };
-}
+};
 
 const styles = StyleSheet.create({
   container: {
